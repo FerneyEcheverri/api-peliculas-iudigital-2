@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const { getConnection } = require('./config/db');
 const dns = require('dns');
 
@@ -12,8 +13,9 @@ const port = process.env.PORT || 3000;
 // Conectar a la Base de Datos
 getConnection();
 
-// Middleware para leer datos JSON en las peticiones HTTP
-app.use(express.json());
+// Middlewares
+app.use(cors()); // Habilita la comunicación entre el Front-End (React) y este Back-End
+app.use(express.json()); // Middleware para leer datos JSON en las peticiones HTTP
 
 // Declaración de Rutas de la API (con el prefijo /api)
 app.use('/api/genero', require('./routes/generoRoute'));

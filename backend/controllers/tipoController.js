@@ -58,10 +58,27 @@ const updateTipo = async (req, res) => {
     res.status(500).send('Ocurrió un error en el servidor');
   }
 };
+// 4. Eliminar un Tipo por ID (DELETE)
+const deleteTipo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tipoBorrado = await Tipo.findByIdAndDelete(id);
+
+    if (!tipoBorrado) {
+      return res.status(404).json({ msg: 'El tipo a eliminar no fue encontrado' });
+    }
+
+    return res.json({ msg: 'Tipo eliminado correctamente' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Error al eliminar el tipo' });
+  }
+};
 
 module.exports = {
   createTipo,
   getTipos,
-  updateTipo
+  updateTipo,
+  deleteTipo
 };
 

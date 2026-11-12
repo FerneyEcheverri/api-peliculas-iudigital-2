@@ -15,7 +15,7 @@ const createGenero = async (req, res) => {
     let genero = new Genero();
     genero.nombre = nombre;
     genero.descripcion = descripcion;
-    genero.estado = estado;
+    genero.estado = estado || 'Activo';
     genero.fechaCreacion = new Date();
     genero.fechaActualizacion = new Date();
 
@@ -30,7 +30,7 @@ const createGenero = async (req, res) => {
 };
 
 // 2. Obtener todos los Géneros (GET)
-const getGeneros = async (req, res) => {
+const getGenero = async (req, res) => {
   try {
     const generos = await Genero.find();
     res.json(generos);
@@ -64,8 +64,27 @@ const updateGenero = async (req, res) => {
   }
 };
 
+// 4. Eliminar un Género por ID (DELETE)
+const deleteGenero = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const generoBorrado = await Genero.findByIdAndDelete(id);
+
+    if (!generoBorrado) {
+      return res.status(404).json({ msg: 'El género a eliminar no fue encontrado' });
+    }
+
+    return res.json({ msg: 'Género eliminado correctamente' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Error al eliminar el género' });
+  }
+};
+
+// Único bloque de exportaciones al final del archivo
 module.exports = {
   createGenero,
-  getGeneros,
-  updateGenero
+  getGenero,
+  updateGenero,
+  deleteGenero
 };
