@@ -5,6 +5,7 @@ import logoIUDigital from './assets/logo-iudigital.png';
 import Home from './pages/Home';
 import Generos from './pages/Generos';
 import Tipos from './pages/Tipos';
+import Director from './pages/Director';
 import MediaCrud from './pages/MediaCrud';
 
 function App() {
@@ -69,25 +70,33 @@ function App() {
                 <span>Género</span>
                 <ChevronDown className="h-3.5 w-3.5 text-cyan-400" />
               </Link>
+
               {/* Enlace dinámico al módulo de Tipos */}
               <Link 
-              to="/tipos"
-              className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-cyan-500/50 bg-[#121721] text-xs font-semibold text-cyan-400 hover:border-cyan-400 hover:bg-slate-800 transition"
-            >
-              <span>Tipo</span>
-              <ChevronDown className="h-3.5 w-3.5 text-cyan-400" />
-            </Link>
+                to="/tipos"
+                className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-cyan-500/50 bg-[#121721] text-xs font-semibold text-cyan-400 hover:border-cyan-400 hover:bg-slate-800 transition"
+              >
+                <span>Tipo</span>
+                <ChevronDown className="h-3.5 w-3.5 text-cyan-400" />
+              </Link>
 
-              {/* Demás botones de filtro */}
-              {['Director', 'Productor'].map((filtro, index) => (
-                <button 
-                  key={index}
-                  className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-slate-700/80 bg-[#121721] text-xs font-semibold text-slate-200 hover:border-slate-500 hover:bg-slate-800 transition"
-                >
-                  <span>{filtro}</span>
-                  <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
-                </button>
-              ))}
+              {/* Enlace dinámico al módulo de Director */}
+              <Link 
+                to="/directores"
+                className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-cyan-500/50 bg-[#121721] text-xs font-semibold text-cyan-400 hover:border-cyan-400 hover:bg-slate-800 transition"
+              >
+                <span>Director</span>
+                <ChevronDown className="h-3.5 w-3.5 text-cyan-400" />
+              </Link>
+
+              {/* Botón pendiente para el módulo de Productor */}
+              <button 
+                className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-slate-700/80 bg-[#121721] text-xs font-semibold text-slate-200 hover:border-slate-500 hover:bg-slate-800 transition"
+              >
+                <span>Productor</span>
+                <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
+              </button>
+
               {/* Media abre directamente en esta misma interfaz, como Géneros y Tipos. */}
               <Link
                 to="/media"
@@ -105,6 +114,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/generos" element={<Generos />} />
               <Route path="/tipos" element={<Tipos />} />
+              <Route path="/directores" element={<Director />} />
               <Route path="/media" element={<MediaCrud />} />
             </Routes>
           </main>
