@@ -5,6 +5,7 @@ import logoIUDigital from './assets/logo-iudigital.png';
 import Home from './pages/Home';
 import Generos from './pages/Generos';
 import Tipos from './pages/Tipos';
+import MediaCrud from './pages/MediaCrud';
 
 function App() {
   return (
@@ -78,7 +79,7 @@ function App() {
             </Link>
 
               {/* Demás botones de filtro */}
-              {['Director', 'Productor', 'Medio'].map((filtro, index) => (
+              {['Director', 'Productor'].map((filtro, index) => (
                 <button 
                   key={index}
                   className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-slate-700/80 bg-[#121721] text-xs font-semibold text-slate-200 hover:border-slate-500 hover:bg-slate-800 transition"
@@ -87,6 +88,14 @@ function App() {
                   <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
                 </button>
               ))}
+              {/* Media abre directamente en esta misma interfaz, como Géneros y Tipos. */}
+              <Link
+                to="/media"
+                className="flex items-center gap-2 px-5 py-1.5 rounded-full border border-cyan-500/50 bg-[#121721] text-xs font-semibold text-cyan-400 hover:border-cyan-400 hover:bg-slate-800 transition"
+              >
+                <span>Medio</span>
+                <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
+              </Link>
             </div>
           </section>
 
@@ -96,6 +105,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/generos" element={<Generos />} />
               <Route path="/tipos" element={<Tipos />} />
+              <Route path="/media" element={<MediaCrud />} />
             </Routes>
           </main>
         </div>
