@@ -41,7 +41,11 @@ function Home() {
       ) : (
         peliculas.map((peli) => (
           <div key={peli._id} className="relative rounded-xl overflow-hidden border border-slate-800/80 bg-[#121721] hover:border-cyan-500/50 transition">
-            <img src={peli.foto} alt={peli.titulo} className="w-full h-64 object-cover" />
+            <img
+              src={peli.imagen || peli.foto}
+              alt={peli.titulo}
+              className="w-full h-64 object-cover"
+            />
             <div className="p-4">
               <h3 className="text-xl font-bold text-white">{peli.titulo}</h3>
               <p className="text-slate-400 text-sm mt-1 line-clamp-2">{peli.sinopsis}</p>

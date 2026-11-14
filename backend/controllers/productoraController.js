@@ -70,8 +70,24 @@ const updateProductora = async (req = request, res = response) => {
     }
 };
 
+// DELETE: Eliminar una productora por ID
+const deleteProductora = async (req = request, res = response) => {
+    try {
+        const { id } = req.params;
+        const productora = await Productora.findByIdAndDelete(id);
+        if (!productora) {
+            return res.status(404).json({ mensaje: 'Productora no encontrada' });
+        }
+        return res.status(200).json({ mensaje: 'Productora eliminada correctamente', productora });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ mensaje: 'Error al eliminar la productora' });
+    }
+};
+
 module.exports = {
     getProductoras,
     createProductora,
-    updateProductora
+    updateProductora,
+    deleteProductora
 };
